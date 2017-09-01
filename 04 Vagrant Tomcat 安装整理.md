@@ -17,6 +17,7 @@ Vagrant Tomcat 安装整理
 ```
    $ sudo groupadd tomcat
 ```
+
 **2. 创建一个新的 tomcat**
 >用户。用户权限```(/opt/tomcat)```目录，开通 shell 权限```(/bin/false)```。
 ```
@@ -29,14 +30,17 @@ Vagrant Tomcat 安装整理
 ```
    $ cd /tmp
 ```
+
 **2. 用 curl 下载**
 ```
    $ curl -O http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
 ```
+
 **3. 用 mkdir 创建（/opt/tomcat）目录**
 ```
    $ sudo mkdir /opt/tomcat
 ```
+
 **4. 用 tar 解压文件到（/opt/tomcat）下**
 ```
    $ sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
@@ -49,19 +53,23 @@ Vagrant Tomcat 安装整理
 ```
 $ cd /opt/tomcat
 ```
+
 **2. 设置 tomcat 组分配安装包目录权限**
 ```
 $ sudo chgrp -R tomcat /opt/tomcat
 ```
+
 **3. 设置 tomcat 组读与访问```conf```目录权限**
 ```
 $ sudo chmod -R g+r conf
 $ sudo chmod g+x conf
 ```
+
 **4. 设置 tomcat 用户设置```webapps/```、```work/```、```temp/```、```logs/```目录权限**
 ```
 $ sudo chown -R tomcat webapps/ work/ temp/ logs/
 ```
+
 >设置完以上的权限后，就能进行```Tomcat```系统服务的创建了。
 
 ## 步骤 5：创建系统服务文件
@@ -71,10 +79,12 @@ $ sudo chown -R tomcat webapps/ work/ temp/ logs/
 ```
 $ sudo update-java-alternatives -l
 ```
+
 >输出
 ```
 java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 ```
+
 >通过获取的```JAVA_HOME```环境变量，后面追加```/jre```。更改组合成的这个服务如下：
 ```
 JAVA_HOME:
@@ -86,7 +96,129 @@ JAVA_HOME:
 ```
 $ sudo nano /etc/systemd/system/tomcat.service
 ```
+>将以下的内容粘贴到服务文件中。需要修改的配置```JAVA_HOME```,有可能还要修改下```CATALINA_OPTS```内存配置：
 
+**/etc/systemd/system/tomcat.service**
+```
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+>配置完成后，保存并退出。
+
+>接下来，重新执行守护程序，这样系统就会知道新建的服务文件：
+```
+$ sudo systemctl daemon-reload
+```
+>启动 Tomcat 服务：
+```
+$ sudo systemctl start tomcat
+```
+
+>再次启动 Tomcat 服务，将会报错：
+```
+$ sudo systemctl start tomcat
+```
+
+## 步骤 6：调整防火墙并测试 Tomcat 服务
+>现在 Tomcat 服务已经启动，我们来验证下是否能访问到默认页。
+
+>开始前，我们必须调整防火墙对服务的请求。前题条件，当前的防火墙```ufw```是开启状态。
+
+>Tomcat 是通过 8080 端口接收常规请求。设置允许访问请求的指令：
+```
+$ sudo ufw allow 8080
+```
+
+>修改完防火墙后，你可以在浏览器上通过域名或 IP 地址加端口```8080```访问默认页面。
+```
+#打开浏览器
+http://server_domain_or_IP:8080
+```
+
+>如果你成功的访问 Tomcat，现在最好同时开启自动启动 Tomcat 服务：
+```
+$ sudo systemctl enable tomcat
+```
+
+## 步骤 7：配置 Tomcat Web 管理接口
+>在使用 Tomcat web 管理应用清单时，我们必须添加一个我们的 Tomcat 服务帐号。我们要编辑```tomcat-users.xml```文件：
+```
+$ sudo nano /opt/tomcat/conf/tomcat-users.xml
+```
+
+>你想用户谁能访问```manager-gui```和```admin-gui```。所以你能定义用户，类似如下示例，在```tomcat-users```标签间。确保修改配置的用户和密码是安全的：
+**tomcat-users.xml — Admin User**
+```
+<tomcat-users . . .>
+    <user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+```
+>当你完成后保存并关闭文件。
+
+>默认情况下，较新版本的 Tomcat Manager 和 Host Manager应用的访问限制是连到它自己的服务上。由于我们是安装在远程服务机器，你可能想删除或修改限制。打开相应的```context.xml```文件，更改 IP 地址限制。
+
+>Manager 应用：
+```
+$ sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+```
+>Host Manager 应用：
+```
+$ sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+```
+>文件内，配置允许来自任何地方的 IP 地址连接。或配置只允许自己的 IP 地址访问，将允许访问的 公共 IP 地址放入列表中：
+
+**context.xml files for Tomcat webapps**
+```
+<Context antiResourceLocking="false" privileged="true" >
+  
+</Context>
+```
+>当完成后保存并退出。
+
+>为使修改生效，要重启 Tomcat 服务：
+```
+$ sudo systemctl restart tomcat
+```
+
+## 步骤 8：访问 Web 接口
+>通过域名或 IP 访问
+```
+#浏览器
+http://server_domain_or_IP:8080
+```
+
+>Manager App 访问
+```
+http://server_domain_or_IP:8080/manager/html
+```
+
+>Host Manager
+```
+http://server_domain_or_IP:8080/host-manager/html/
+```
 
 **参考资料**
 >https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04
