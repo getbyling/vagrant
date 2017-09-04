@@ -86,7 +86,7 @@ java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 ```
 
 >通过获取的```JAVA_HOME```环境变量，后面追加```/jre```。更改组合成的这个服务如下：
-```
+```text
 JAVA_HOME:
 /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
 ```
@@ -99,7 +99,7 @@ sudo nano /etc/systemd/system/tomcat.service
 >将以下的内容粘贴到服务文件中。需要修改的配置```JAVA_HOME```,有可能还要修改下```CATALINA_OPTS```内存配置：
 
 **/etc/systemd/system/tomcat.service**
-```
+```text
 [Unit]
 Description=Apache Tomcat Web Application Container
 After=network.target
@@ -195,7 +195,7 @@ sudo nano /vagrant/environment/apache-tomcat-8080/webapps/host-manager/META-INF/
 >文件内，配置允许来自任何地方的 IP 地址连接。或配置只允许自己的 IP 地址访问，将允许访问的 公共 IP 地址放入列表中：
 
 **context.xml files for Tomcat webapps**
-```
+```xml
 <Context antiResourceLocking="false" privileged="true" >
   
 </Context>
@@ -219,7 +219,6 @@ sudo systemctl restart tomcat8080
 ## 步骤 8：访问 Web 接口
 >通过域名或 IP 访问
 ```
-#浏览器
 http://server_domain_or_IP:8080
 ```
 
