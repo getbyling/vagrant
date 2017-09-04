@@ -19,16 +19,16 @@ Vagrant Tomcat 安装整理
 ```
 
 **2. 创建一个新的 tomcat**
->用户。用户权限```(/opt/tomcat)```目录，开通 shell 权限```(/bin/false)```。
+>用户。用户权限```(/vagrant/environment/apache-tomcat-8080)```目录，开通 shell 权限```(/bin/false)```。
 ```
-   sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+   sudo useradd -s /bin/false -g tomcat -d /vagrant/environment/apache-tomcat-8080 tomcat
 ```
 >创建完```tomcat``` 用户后，现在可以用刚创建的用户安装下载的 Tomcat 了。
 
 ## 步骤 3：安装 Tomcat
 **1. 切换目录**
 ```
-   cd /tmp
+   cd /vagrant/environment
 ```
 
 **2. 用 curl 下载**
@@ -36,14 +36,14 @@ Vagrant Tomcat 安装整理
    curl -O http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
 ```
 
-**3. 用 mkdir 创建（/opt/tomcat）目录**
+**3. 用 mkdir 创建（/vagrant/environment/apache-tomcat-8080）目录**
 ```
-   sudo mkdir /opt/tomcat
+   sudo mkdir /vagrant/environment/apache-tomcat-8080
 ```
 
-**4. 用 tar 解压文件到（/opt/tomcat）下**
+**4. 用 tar 解压文件到（/vagrant/environment/apache-tomcat-8080）下**
 ```
-   sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+   sudo tar xzvf apache-tomcat-8*tar.gz -C /vagrant/environment/apache-tomcat-8080 --strip-components=1
 ```
 
 ## 步骤 4：更新权限
@@ -51,12 +51,12 @@ Vagrant Tomcat 安装整理
 
 **1. 切换 tomcat 安装包目录**
 ```
-cd /opt/tomcat
+cd /vagrant/environment/apache-tomcat-8080
 ```
 
 **2. 设置 tomcat 组分配安装包目录权限**
 ```
-sudo chgrp -R tomcat /opt/tomcat
+sudo chgrp -R tomcat /vagrant/environment/apache-tomcat-8080
 ```
 
 **3. 设置 tomcat 组读与访问```conf```目录权限**
@@ -107,15 +107,15 @@ After=network.target
 [Service]
 Type=forking
 
-Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
-Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
-Environment=CATALINA_HOME=/opt/tomcat
-Environment=CATALINA_BASE=/opt/tomcat
-Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment=JAVA_HOME=/vagrant/environment/jdk1.8.0_144/jre
+Environment=CATALINA_PID=/vagrant/environment/apache-tomcat-8080/temp/tomcat.pid
+Environment=CATALINA_HOME=/vagrant/environment/apache-tomcat-8080
+Environment=CATALINA_BASE=/vagrant/environment/apache-tomcat-8080
+Environment='CATALINA_OPTS=-Xms256M -Xmx512M -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
-ExecStart=/opt/tomcat/bin/startup.sh
-ExecStop=/opt/tomcat/bin/shutdown.sh
+ExecStart=/vagrant/environment/apache-tomcat-8080/bin/startup.sh
+ExecStop=/vagrant/environment/apache-tomcat-8080/bin/shutdown.sh
 
 User=tomcat
 Group=tomcat
@@ -126,6 +126,10 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
+>配置说明：
+> 1. CATALINA_PID：进程锁；
+> 2. CATALINA_OPTS：TOMCAT 使用参数配置。
+
 >配置完成后，保存并退出。
 
 >接下来，重新执行守护程序，这样系统就会知道新建的服务文件：
@@ -134,12 +138,12 @@ sudo systemctl daemon-reload
 ```
 >启动 Tomcat 服务：
 ```
-sudo systemctl start tomcat
+sudo systemctl start tomcat8080
 ```
 
 >再次启动 Tomcat 服务，将会报错：
 ```
-sudo systemctl start tomcat
+sudo systemctl start tomcat8080
 ```
 
 ## 步骤 6：调整防火墙并测试 Tomcat 服务
@@ -160,13 +164,13 @@ http://server_domain_or_IP:8080
 
 >如果你成功的访问 Tomcat，现在最好同时开启自动启动 Tomcat 服务：
 ```
-sudo systemctl enable tomcat
+sudo systemctl enable tomcat8080
 ```
 
 ## 步骤 7：配置 Tomcat Web 管理接口
 >在使用 Tomcat web 管理应用清单时，我们必须添加一个我们的 Tomcat 服务帐号。我们要编辑```tomcat-users.xml```文件：
 ```
-sudo nano /opt/tomcat/conf/tomcat-users.xml
+sudo nano /vagrant/environment/apache-tomcat-8080/conf/tomcat-users.xml
 ```
 
 >你想用户谁能访问```manager-gui```和```admin-gui```。所以你能定义用户，类似如下示例，在```tomcat-users```标签间。确保修改配置的用户和密码是安全的：
@@ -182,11 +186,11 @@ sudo nano /opt/tomcat/conf/tomcat-users.xml
 
 >Manager 应用：
 ```
-sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+sudo nano /vagrant/environment/apache-tomcat-8080/webapps/manager/META-INF/context.xml
 ```
 >Host Manager 应用：
 ```
-sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+sudo nano /vagrant/environment/apache-tomcat-8080/webapps/host-manager/META-INF/context.xml
 ```
 >文件内，配置允许来自任何地方的 IP 地址连接。或配置只允许自己的 IP 地址访问，将允许访问的 公共 IP 地址放入列表中：
 
@@ -196,11 +200,17 @@ sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
   
 </Context>
 ```
+>提供两个参数配置：RemoteHostValve 和 RemoteAddrValve，前者用于限制主机名，后者用于限制 IP 地址；
+>allow：允许访问
+>deny：拒绝访问
+```xml
+<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="192.168.0.47" deny=""/>
+```
 >当完成后保存并退出。
 
 >为使修改生效，要重启 Tomcat 服务：
 ```
-sudo systemctl restart tomcat
+sudo systemctl restart tomcat8080
 ```
 
 ## 步骤 8：访问 Web 接口
@@ -220,5 +230,6 @@ http://server_domain_or_IP:8080/manager/html
 http://server_domain_or_IP:8080/host-manager/html/
 ```
 
-**参考资料**
->https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04
+## 参考资料
+- [How To Install Apache Tomcat 8 on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04)
+- [Tomcat 中实现 IP 访问限制](http://fanli7.net/a/bianchengyuyan/C__/20140225/473164.html)
