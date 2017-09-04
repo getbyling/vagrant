@@ -95,17 +95,17 @@ java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 >通过获取的```JAVA_HOME```环境变量，后面追加```/jre```。更改组合成的这个服务如下：
 ```text
 JAVA_HOME:
-/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+/vagrant/environment/apache-tomcat-8080/jre
 ```
 >具体情况以自己本机环境为准。
 
 >通过以下命令，可以创建系统服务文件。打开访问```tomcat.service```在```/etc/systemd/system```目录中：
 ```
-sudo nano /etc/systemd/system/tomcat.service
+sudo vi /etc/systemd/system/tomcat8080.service
 ```
 >将以下的内容粘贴到服务文件中。需要修改的配置```JAVA_HOME```,有可能还要修改下```CATALINA_OPTS```内存配置：
 
-**/etc/systemd/system/tomcat.service**
+**/etc/systemd/system/tomcat8080.service**
 ```text
 [Unit]
 Description=Apache Tomcat Web Application Container
@@ -118,7 +118,7 @@ Environment=JAVA_HOME=/vagrant/environment/jdk1.8.0_144/jre
 Environment=CATALINA_PID=/vagrant/environment/apache-tomcat-8080/temp/tomcat.pid
 Environment=CATALINA_HOME=/vagrant/environment/apache-tomcat-8080
 Environment=CATALINA_BASE=/vagrant/environment/apache-tomcat-8080
-Environment='CATALINA_OPTS=-Xms256M -Xmx512M -server -XX:+UseParallelGC'
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 ExecStart=/vagrant/environment/apache-tomcat-8080/bin/startup.sh
