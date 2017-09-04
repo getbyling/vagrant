@@ -200,9 +200,12 @@ sudo nano /vagrant/environment/apache-tomcat-8080/webapps/host-manager/META-INF/
   
 </Context>
 ```
->提供两个参数配置：RemoteHostValve 和 RemoteAddrValve，前者用于限制主机名，后者用于限制 IP 地址；
->allow：允许访问
->deny：拒绝访问
+>配置说明：
+```text
+提供两个参数配置：RemoteHostValve 和 RemoteAddrValve，前者用于限制主机名，后者用于限制 IP 地址；
+allow：允许访问
+deny：拒绝访问
+```
 ```xml
 <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="192.168.0.47" deny=""/>
 ```
