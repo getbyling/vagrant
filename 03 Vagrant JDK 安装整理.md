@@ -6,10 +6,10 @@ Vagrant Ubuntu JDK 安装整理
 
 ### 设置环境变量
 ```
-$ cd ~
+ cd ~
 ```
 ```
-$ sudo vi .bashrc
+ sudo vi .bashrc
 ```
 **文件末尾追加以下内容：**
 ```
@@ -22,23 +22,23 @@ export PATH=${JAVA_HOME}/bin:$PATH
 ```
 **使环境变量马上生效**
 ```
-$ source .bashrc
+ source .bashrc
 ```
 ### 设置系统默认 JDK 版本
 ```
-$ sudo update-alternatives --install "/usr/bin/java" "java" "/vagrant/environment/jdk1.8.0_144/bin/java" 1 
-$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/vagrant/environment/jdk1.8.0_144/bin/javac" 1 
-$ sudo update-alternatives --install "/usr/bin/jar" "jar" "/vagrant/environment/jdk1.8.0_144/bin/jar" 1
-$ sudo update-alternatives --install "/usr/bin/javah" "javah" "/vagrant/environment/jdk1.8.0_144/bin/javah" 1 
-$ sudo update-alternatives --install "/usr/bin/javap" "javap" "/vagrant/environment/jdk1.8.0_144/bin/javap" 1 
+ sudo update-alternatives --install "/usr/bin/java" "java" "/vagrant/environment/jdk1.8.0_144/bin/java" 1 
+ sudo update-alternatives --install "/usr/bin/javac" "javac" "/vagrant/environment/jdk1.8.0_144/bin/javac" 1 
+ sudo update-alternatives --install "/usr/bin/jar" "jar" "/vagrant/environment/jdk1.8.0_144/bin/jar" 1
+ sudo update-alternatives --install "/usr/bin/javah" "javah" "/vagrant/environment/jdk1.8.0_144/bin/javah" 1 
+ sudo update-alternatives --install "/usr/bin/javap" "javap" "/vagrant/environment/jdk1.8.0_144/bin/javap" 1 
 ```
 **执行设置：**
 ```
-$ sudo update-alternatives --config java
+ sudo update-alternatives --config java
 ```
 ### 测试 JDK
 ```
-$ java -version
+ java -version
 ```
 
 **OK，安装成功**

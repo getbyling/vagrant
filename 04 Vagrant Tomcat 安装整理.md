@@ -15,35 +15,35 @@ Vagrant Tomcat 安装整理
 
 **1. 创建用户组**
 ```
-   $ sudo groupadd tomcat
+   sudo groupadd tomcat
 ```
 
 **2. 创建一个新的 tomcat**
 >用户。用户权限```(/opt/tomcat)```目录，开通 shell 权限```(/bin/false)```。
 ```
-   $ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+   sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 ```
 >创建完```tomcat``` 用户后，现在可以用刚创建的用户安装下载的 Tomcat 了。
 
 ## 步骤 3：安装 Tomcat
 **1. 切换目录**
 ```
-   $ cd /tmp
+   cd /tmp
 ```
 
 **2. 用 curl 下载**
 ```
-   $ curl -O http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
+   curl -O http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
 ```
 
 **3. 用 mkdir 创建（/opt/tomcat）目录**
 ```
-   $ sudo mkdir /opt/tomcat
+   sudo mkdir /opt/tomcat
 ```
 
 **4. 用 tar 解压文件到（/opt/tomcat）下**
 ```
-   $ sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+   sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
 ```
 
 ## 步骤 4：更新权限
@@ -51,23 +51,23 @@ Vagrant Tomcat 安装整理
 
 **1. 切换 tomcat 安装包目录**
 ```
-$ cd /opt/tomcat
+cd /opt/tomcat
 ```
 
 **2. 设置 tomcat 组分配安装包目录权限**
 ```
-$ sudo chgrp -R tomcat /opt/tomcat
+sudo chgrp -R tomcat /opt/tomcat
 ```
 
 **3. 设置 tomcat 组读与访问```conf```目录权限**
 ```
-$ sudo chmod -R g+r conf
-$ sudo chmod g+x conf
+sudo chmod -R g+r conf
+sudo chmod g+x conf
 ```
 
 **4. 设置 tomcat 用户设置```webapps/```、```work/```、```temp/```、```logs/```目录权限**
 ```
-$ sudo chown -R tomcat webapps/ work/ temp/ logs/
+sudo chown -R tomcat webapps/ work/ temp/ logs/
 ```
 
 >设置完以上的权限后，就能进行```Tomcat```系统服务的创建了。
@@ -77,7 +77,7 @@ $ sudo chown -R tomcat webapps/ work/ temp/ logs/
 
 >Tomcat 必须先配置```JAVA_HOME```。查看本地配置位置，执行以下命令：
 ```
-$ sudo update-java-alternatives -l
+sudo update-java-alternatives -l
 ```
 
 >输出
@@ -94,7 +94,7 @@ JAVA_HOME:
 
 >通过以下命令，可以创建系统服务文件。打开访问```tomcat.service```在```/etc/systemd/system```目录中：
 ```
-$ sudo nano /etc/systemd/system/tomcat.service
+sudo nano /etc/systemd/system/tomcat.service
 ```
 >将以下的内容粘贴到服务文件中。需要修改的配置```JAVA_HOME```,有可能还要修改下```CATALINA_OPTS```内存配置：
 
@@ -130,16 +130,16 @@ WantedBy=multi-user.target
 
 >接下来，重新执行守护程序，这样系统就会知道新建的服务文件：
 ```
-$ sudo systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 >启动 Tomcat 服务：
 ```
-$ sudo systemctl start tomcat
+sudo systemctl start tomcat
 ```
 
 >再次启动 Tomcat 服务，将会报错：
 ```
-$ sudo systemctl start tomcat
+sudo systemctl start tomcat
 ```
 
 ## 步骤 6：调整防火墙并测试 Tomcat 服务
@@ -149,7 +149,7 @@ $ sudo systemctl start tomcat
 
 >Tomcat 是通过 8080 端口接收常规请求。设置允许访问请求的指令：
 ```
-$ sudo ufw allow 8080
+sudo ufw allow 8080
 ```
 
 >修改完防火墙后，你可以在浏览器上通过域名或 IP 地址加端口```8080```访问默认页面。
@@ -160,13 +160,13 @@ http://server_domain_or_IP:8080
 
 >如果你成功的访问 Tomcat，现在最好同时开启自动启动 Tomcat 服务：
 ```
-$ sudo systemctl enable tomcat
+sudo systemctl enable tomcat
 ```
 
 ## 步骤 7：配置 Tomcat Web 管理接口
 >在使用 Tomcat web 管理应用清单时，我们必须添加一个我们的 Tomcat 服务帐号。我们要编辑```tomcat-users.xml```文件：
 ```
-$ sudo nano /opt/tomcat/conf/tomcat-users.xml
+sudo nano /opt/tomcat/conf/tomcat-users.xml
 ```
 
 >你想用户谁能访问```manager-gui```和```admin-gui```。所以你能定义用户，类似如下示例，在```tomcat-users```标签间。确保修改配置的用户和密码是安全的：
@@ -182,11 +182,11 @@ $ sudo nano /opt/tomcat/conf/tomcat-users.xml
 
 >Manager 应用：
 ```
-$ sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
 ```
 >Host Manager 应用：
 ```
-$ sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ```
 >文件内，配置允许来自任何地方的 IP 地址连接。或配置只允许自己的 IP 地址访问，将允许访问的 公共 IP 地址放入列表中：
 
@@ -200,7 +200,7 @@ $ sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
 >为使修改生效，要重启 Tomcat 服务：
 ```
-$ sudo systemctl restart tomcat
+sudo systemctl restart tomcat
 ```
 
 ## 步骤 8：访问 Web 接口
