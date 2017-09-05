@@ -12,4 +12,4 @@ Vagrant Ubuntu 各工具安装整理
 
 Vagrant 配置整理
 ----------------
-- [vagrant 配置说明]()
+- [vagrant 配置说明](https://github.com/getbyling/vagrant/blob/master/Vagrant%20%E9%85%8D%E7%BD%AE%E6%95%B4%E7%90%86/vagrant%20%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.md)
