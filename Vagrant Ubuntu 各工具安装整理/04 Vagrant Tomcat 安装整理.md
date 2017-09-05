@@ -154,6 +154,11 @@ sudo systemctl start tomcat8080
 sudo systemctl start tomcat8080
 ```
 
+>停止当前的运行服务，可以使用```stop```命令替代：
+```text
+sudo systemctl stop tomcat8080.service
+```
+
 步骤 6：调整防火墙并测试 Tomcat 服务
 ------------------------------------
 >现在 Tomcat 服务已经启动，我们来验证下是否能访问到默认页。
@@ -245,3 +250,4 @@ http://server_domain_or_IP:8080/host-manager/html/
 --------
 - [How To Install Apache Tomcat 8 on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04)
 - [Tomcat 中实现 IP 访问限制](http://fanli7.net/a/bianchengyuyan/C__/20140225/473164.html)
+- [How To Use Systemctl to Manage Systemd Services and Units](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)

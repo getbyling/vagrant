@@ -72,6 +72,15 @@ Nginx HTTP                 ALLOW       Anywhere
 OpenSSH (v6)               ALLOW       Anywhere (v6)
 Nginx HTTP (v6)            ALLOW       Anywhere (v6)
 ```
+>打开防火墙 
+```text
+sudo ufw enable
+```
+> 关闭防火墙
+```text
+sudo ufw disable
+```
+
 Step 3: Check your Web Server
 -------
 At the end of the installation process, Ubuntu 16.04 starts Nginx. The web server should already be up and running.
