@@ -1,109 +1,109 @@
-Vagrant Tomcat °²×°ÕûÀí
+Vagrant Tomcat å®‰è£…æ•´ç†
 =======================
 
-Tomcat ×¼±¸
+Tomcat å‡†å¤‡
 -----------
->ÕâÀïÌá¹©µÄ Tomcat ÏÂÔØ°æ±¾ÊÇ 8¡£[Tomcat 8 ÏÂÔØ](http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz) 
+>è¿™é‡Œæä¾›çš„ Tomcat ä¸‹è½½ç‰ˆæœ¬æ˜¯ 8ã€‚[Tomcat 8 ä¸‹è½½](http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz) 
 
-°²×°²½Öè
+å®‰è£…æ­¥éª¤
 --------
->ÒÔÏÂµÄ°²×°²½ÖèÊÇÒÔ ```Ubuntu 16.04``` ÎªÊ¾Àı¡£
+>ä»¥ä¸‹çš„å®‰è£…æ­¥éª¤æ˜¯ä»¥ ```Ubuntu 16.04``` ä¸ºç¤ºä¾‹ã€‚
 
-²½Öè 1£º°²×° JDK
+æ­¥éª¤ 1ï¼šå®‰è£… JDK
 -----------------
->ÔÚ Ubuntu ÏÂ JDK µÄ°²×°£¬¿ÉÔÄ¶Á[¡¶Vagrant JDK °²×°ÕûÀí¡·](http://note.youdao.com/share/?id=bdcef13988cb1c4f9e7d11c0aba26ce1&type=note#/)ÕâÆªÎÄÕÂ¡£ÔÚÕâÀï¾Í²»ÔÚ×¸Êö£¨-_-£©
+>åœ¨ Ubuntu ä¸‹ JDK çš„å®‰è£…ï¼Œå¯é˜…è¯»[ã€ŠVagrant JDK å®‰è£…æ•´ç†ã€‹](http://note.youdao.com/share/?id=bdcef13988cb1c4f9e7d11c0aba26ce1&type=note#/)è¿™ç¯‡æ–‡ç« ã€‚åœ¨è¿™é‡Œå°±ä¸åœ¨èµ˜è¿°ï¼ˆ-_-ï¼‰
 
-²½Öè 2£º´´½¨ Tomcat ÓÃ»§
+æ­¥éª¤ 2ï¼šåˆ›å»º Tomcat ç”¨æˆ·
 ------------------------
->ÎªÁË°²È«Æğ¼û£¬´´½¨ tomcat ÓÃ»§»ò×é¡£¿ÉÒÔÔÚÕâÓÃ»§»ò×éÄÚÖ´ĞĞ tomcat ·şÎñ¡£ÔÚ vagrant ¸öÈË½¨Òé¿ÉÊ¡ÂÔ£¨-_-£©¡£
+>ä¸ºäº†å®‰å…¨èµ·è§ï¼Œåˆ›å»º tomcat ç”¨æˆ·æˆ–ç»„ã€‚å¯ä»¥åœ¨è¿™ç”¨æˆ·æˆ–ç»„å†…æ‰§è¡Œ tomcat æœåŠ¡ã€‚åœ¨ vagrant ä¸ªäººå»ºè®®å¯çœç•¥ï¼ˆ-_-ï¼‰ã€‚
 
-**1. ´´½¨ÓÃ»§×é**
+**1. åˆ›å»ºç”¨æˆ·ç»„**
 ```
    sudo groupadd tomcat
 ```
 
-**2. ´´½¨Ò»¸öĞÂµÄ tomcat**
->ÓÃ»§¡£ÓÃ»§È¨ÏŞ```(/vagrant/environment/apache-tomcat-8080)```Ä¿Â¼£¬¿ªÍ¨ shell È¨ÏŞ```(/bin/false)```¡£
+**2. åˆ›å»ºä¸€ä¸ªæ–°çš„ tomcat**
+>ç”¨æˆ·ã€‚ç”¨æˆ·æƒé™```(/vagrant/environment/apache-tomcat-8080)```ç›®å½•ï¼Œå¼€é€š shell æƒé™```(/bin/false)```ã€‚
 ```
    sudo useradd -s /bin/false -g tomcat -d /vagrant/environment/apache-tomcat-8080 tomcat
 ```
->´´½¨Íê```tomcat``` ÓÃ»§ºó£¬ÏÖÔÚ¿ÉÒÔÓÃ¸Õ´´½¨µÄÓÃ»§°²×°ÏÂÔØµÄ Tomcat ÁË¡£
+>åˆ›å»ºå®Œ```tomcat``` ç”¨æˆ·åï¼Œç°åœ¨å¯ä»¥ç”¨åˆšåˆ›å»ºçš„ç”¨æˆ·å®‰è£…ä¸‹è½½çš„ Tomcat äº†ã€‚
 
-²½Öè 3£º°²×° Tomcat
+æ­¥éª¤ 3ï¼šå®‰è£… Tomcat
 -------------------
-**1. ÇĞ»»Ä¿Â¼**
+**1. åˆ‡æ¢ç›®å½•**
 ```
    cd /vagrant/environment
 ```
 
-**2. ÓÃ curl ÏÂÔØ**
+**2. ç”¨ curl ä¸‹è½½**
 ```
    curl -O http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
 ```
 
-**3. ÓÃ mkdir ´´½¨£¨/vagrant/environment/apache-tomcat-8080£©Ä¿Â¼**
+**3. ç”¨ mkdir åˆ›å»ºï¼ˆ/vagrant/environment/apache-tomcat-8080ï¼‰ç›®å½•**
 ```
    sudo mkdir /vagrant/environment/apache-tomcat-8080
 ```
 
-**4. ÓÃ tar ½âÑ¹ÎÄ¼şµ½£¨/vagrant/environment/apache-tomcat-8080£©ÏÂ**
+**4. ç”¨ tar è§£å‹æ–‡ä»¶åˆ°ï¼ˆ/vagrant/environment/apache-tomcat-8080ï¼‰ä¸‹**
 ```
    sudo tar xzvf apache-tomcat-8*tar.gz -C /vagrant/environment/apache-tomcat-8080 --strip-components=1
 ```
 
-²½Öè 4£º¸üĞÂÈ¨ÏŞ
+æ­¥éª¤ 4ï¼šæ›´æ–°æƒé™
 ----------------
->```tomcat```ÓÃ»§±ØĞëÒªÓĞ·ÃÎÊ Tomcat °²×°Ä¿Â¼µÄÈ¨ÏŞ¡£
+>```tomcat```ç”¨æˆ·å¿…é¡»è¦æœ‰è®¿é—® Tomcat å®‰è£…ç›®å½•çš„æƒé™ã€‚
 
-**1. ÇĞ»» tomcat °²×°°üÄ¿Â¼**
+**1. åˆ‡æ¢ tomcat å®‰è£…åŒ…ç›®å½•**
 ```
 cd /vagrant/environment/apache-tomcat-8080
 ```
 
-**2. ÉèÖÃ tomcat ×é·ÖÅä°²×°°üÄ¿Â¼È¨ÏŞ**
+**2. è®¾ç½® tomcat ç»„åˆ†é…å®‰è£…åŒ…ç›®å½•æƒé™**
 ```
 sudo chgrp -R tomcat /vagrant/environment/apache-tomcat-8080
 ```
 
-**3. ÉèÖÃ tomcat ×é¶ÁÓë·ÃÎÊ```conf```Ä¿Â¼È¨ÏŞ**
+**3. è®¾ç½® tomcat ç»„è¯»ä¸è®¿é—®```conf```ç›®å½•æƒé™**
 ```
 sudo chmod -R g+r conf
 sudo chmod g+x conf
 ```
 
-**4. ÉèÖÃ tomcat ÓÃ»§ÉèÖÃ```webapps/```¡¢```work/```¡¢```temp/```¡¢```logs/```Ä¿Â¼È¨ÏŞ**
+**4. è®¾ç½® tomcat ç”¨æˆ·è®¾ç½®```webapps/```ã€```work/```ã€```temp/```ã€```logs/```ç›®å½•æƒé™**
 ```
 sudo chown -R tomcat webapps/ work/ temp/ logs/
 ```
 
->ÉèÖÃÍêÒÔÉÏµÄÈ¨ÏŞºó£¬¾ÍÄÜ½øĞĞ```Tomcat```ÏµÍ³·şÎñµÄ´´½¨ÁË¡£
+>è®¾ç½®å®Œä»¥ä¸Šçš„æƒé™åï¼Œå°±èƒ½è¿›è¡Œ```Tomcat```ç³»ç»ŸæœåŠ¡çš„åˆ›å»ºäº†ã€‚
 
-²½Öè 5£º´´½¨ÏµÍ³·şÎñÎÄ¼ş
+æ­¥éª¤ 5ï¼šåˆ›å»ºç³»ç»ŸæœåŠ¡æ–‡ä»¶
 ------------------------
->ÎªÁËÔËĞĞ Tomcat ·şÎñ£¬ÏÈÒª°²×°ÏµÍ³·şÎñÎÄ¼ş¡£
+>ä¸ºäº†è¿è¡Œ Tomcat æœåŠ¡ï¼Œå…ˆè¦å®‰è£…ç³»ç»ŸæœåŠ¡æ–‡ä»¶ã€‚
 
->Tomcat ±ØĞëÏÈÅäÖÃ```JAVA_HOME```¡£²é¿´±¾µØÅäÖÃÎ»ÖÃ£¬Ö´ĞĞÒÔÏÂÃüÁî£º
+>Tomcat å¿…é¡»å…ˆé…ç½®```JAVA_HOME```ã€‚æŸ¥çœ‹æœ¬åœ°é…ç½®ä½ç½®ï¼Œæ‰§è¡Œä»¥ä¸‹å‘½ä»¤ï¼š
 ```
 sudo update-java-alternatives -l
 ```
 
->Êä³ö
+>è¾“å‡º
 ```
 java-1.8.0-openjdk-amd64       1081       /usr/lib/jvm/java-1.8.0-openjdk-amd64
 ```
 
->Í¨¹ı»ñÈ¡µÄ```JAVA_HOME```»·¾³±äÁ¿£¬ºóÃæ×·¼Ó```/jre```¡£¸ü¸Ä×éºÏ³ÉµÄÕâ¸ö·şÎñÈçÏÂ£º
+>é€šè¿‡è·å–çš„```JAVA_HOME```ç¯å¢ƒå˜é‡ï¼Œåé¢è¿½åŠ ```/jre```ã€‚æ›´æ”¹ç»„åˆæˆçš„è¿™ä¸ªæœåŠ¡å¦‚ä¸‹ï¼š
 ```text
 JAVA_HOME:
 /vagrant/environment/apache-tomcat-8080/jre
 ```
->¾ßÌåÇé¿öÒÔ×Ô¼º±¾»ú»·¾³Îª×¼¡£
+>å…·ä½“æƒ…å†µä»¥è‡ªå·±æœ¬æœºç¯å¢ƒä¸ºå‡†ã€‚
 
->Í¨¹ıÒÔÏÂÃüÁî£¬¿ÉÒÔ´´½¨ÏµÍ³·şÎñÎÄ¼ş¡£´ò¿ª·ÃÎÊ```tomcat.service```ÔÚ```/etc/systemd/system```Ä¿Â¼ÖĞ£º
+>é€šè¿‡ä»¥ä¸‹å‘½ä»¤ï¼Œå¯ä»¥åˆ›å»ºç³»ç»ŸæœåŠ¡æ–‡ä»¶ã€‚æ‰“å¼€è®¿é—®```tomcat.service```åœ¨```/etc/systemd/system```ç›®å½•ä¸­ï¼š
 ```
 sudo vi /etc/systemd/system/tomcat8080.service
 ```
->½«ÒÔÏÂµÄÄÚÈİÕ³Ìùµ½·şÎñÎÄ¼şÖĞ¡£ĞèÒªĞŞ¸ÄµÄÅäÖÃ```JAVA_HOME```,ÓĞ¿ÉÄÜ»¹ÒªĞŞ¸ÄÏÂ```CATALINA_OPTS```ÄÚ´æÅäÖÃ£º
+>å°†ä»¥ä¸‹çš„å†…å®¹ç²˜è´´åˆ°æœåŠ¡æ–‡ä»¶ä¸­ã€‚éœ€è¦ä¿®æ”¹çš„é…ç½®```JAVA_HOME```,æœ‰å¯èƒ½è¿˜è¦ä¿®æ”¹ä¸‹```CATALINA_OPTS```å†…å­˜é…ç½®ï¼š
 
 **/etc/systemd/system/tomcat8080.service**
 ```text
@@ -133,79 +133,79 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
->ÅäÖÃËµÃ÷£º
+>é…ç½®è¯´æ˜ï¼š
 ```text
-1. CATALINA_PID£º½ø³ÌËø£»
-2. CATALINA_OPTS£ºTOMCAT Ê¹ÓÃ²ÎÊıÅäÖÃ¡£
+1. CATALINA_PIDï¼šè¿›ç¨‹é”ï¼›
+2. CATALINA_OPTSï¼šTOMCAT ä½¿ç”¨å‚æ•°é…ç½®ã€‚
 ```
->ÅäÖÃÍê³Éºó£¬±£´æ²¢ÍË³ö¡£
+>é…ç½®å®Œæˆåï¼Œä¿å­˜å¹¶é€€å‡ºã€‚
 
->½ÓÏÂÀ´£¬ÖØĞÂÖ´ĞĞÊØ»¤³ÌĞò£¬ÕâÑùÏµÍ³¾Í»áÖªµÀĞÂ½¨µÄ·şÎñÎÄ¼ş£º
+>æ¥ä¸‹æ¥ï¼Œé‡æ–°æ‰§è¡Œå®ˆæŠ¤ç¨‹åºï¼Œè¿™æ ·ç³»ç»Ÿå°±ä¼šçŸ¥é“æ–°å»ºçš„æœåŠ¡æ–‡ä»¶ï¼š
 ```
 sudo systemctl daemon-reload
 ```
->Æô¶¯ Tomcat ·şÎñ£º
+>å¯åŠ¨ Tomcat æœåŠ¡ï¼š
 ```
 sudo systemctl start tomcat8080
 ```
 
->ÔÙ´ÎÆô¶¯ Tomcat ·şÎñ£¬½«»á±¨´í£º
+>å†æ¬¡å¯åŠ¨ Tomcat æœåŠ¡ï¼Œå°†ä¼šæŠ¥é”™ï¼š
 ```
 sudo systemctl start tomcat8080
 ```
 
->Í£Ö¹µ±Ç°µÄÔËĞĞ·şÎñ£¬¿ÉÒÔÊ¹ÓÃ```stop```ÃüÁîÌæ´ú£º
+>åœæ­¢å½“å‰çš„è¿è¡ŒæœåŠ¡ï¼Œå¯ä»¥ä½¿ç”¨```stop```å‘½ä»¤æ›¿ä»£ï¼š
 ```text
 sudo systemctl stop tomcat8080.service
 ```
 
-²½Öè 6£ºµ÷Õû·À»ğÇ½²¢²âÊÔ Tomcat ·şÎñ
+æ­¥éª¤ 6ï¼šè°ƒæ•´é˜²ç«å¢™å¹¶æµ‹è¯• Tomcat æœåŠ¡
 ------------------------------------
->ÏÖÔÚ Tomcat ·şÎñÒÑ¾­Æô¶¯£¬ÎÒÃÇÀ´ÑéÖ¤ÏÂÊÇ·ñÄÜ·ÃÎÊµ½Ä¬ÈÏÒ³¡£
- ¿ªÊ¼Ç°£¬ÎÒÃÇ±ØĞëµ÷Õû·À»ğÇ½¶Ô·şÎñµÄÇëÇó¡£Ç°ÌâÌõ¼ş£¬µ±Ç°µÄ·À»ğÇ½```ufw```ÊÇ¿ªÆô×´Ì¬¡£
- Tomcat ÊÇÍ¨¹ı 8080 ¶Ë¿Ú½ÓÊÕ³£¹æÇëÇó¡£ÉèÖÃÔÊĞí·ÃÎÊÇëÇóµÄÖ¸Áî£º
+>ç°åœ¨ Tomcat æœåŠ¡å·²ç»å¯åŠ¨ï¼Œæˆ‘ä»¬æ¥éªŒè¯ä¸‹æ˜¯å¦èƒ½è®¿é—®åˆ°é»˜è®¤é¡µã€‚
+ å¼€å§‹å‰ï¼Œæˆ‘ä»¬å¿…é¡»è°ƒæ•´é˜²ç«å¢™å¯¹æœåŠ¡çš„è¯·æ±‚ã€‚å‰é¢˜æ¡ä»¶ï¼Œå½“å‰çš„é˜²ç«å¢™```ufw```æ˜¯å¼€å¯çŠ¶æ€ã€‚
+ Tomcat æ˜¯é€šè¿‡ 8080 ç«¯å£æ¥æ”¶å¸¸è§„è¯·æ±‚ã€‚è®¾ç½®å…è®¸è®¿é—®è¯·æ±‚çš„æŒ‡ä»¤ï¼š
 ```
 sudo ufw allow 8080
 ```
 
->ĞŞ¸ÄÍê·À»ğÇ½ºó£¬Äã¿ÉÒÔÔÚä¯ÀÀÆ÷ÉÏÍ¨¹ıÓòÃû»ò IP µØÖ·¼Ó¶Ë¿Ú```8080```·ÃÎÊÄ¬ÈÏÒ³Ãæ¡£
+>ä¿®æ”¹å®Œé˜²ç«å¢™åï¼Œä½ å¯ä»¥åœ¨æµè§ˆå™¨ä¸Šé€šè¿‡åŸŸåæˆ– IP åœ°å€åŠ ç«¯å£```8080```è®¿é—®é»˜è®¤é¡µé¢ã€‚
 ```
-#´ò¿ªä¯ÀÀÆ÷
+#æ‰“å¼€æµè§ˆå™¨
 http://server_domain_or_IP:8080
 ```
 
->Èç¹ûÄã³É¹¦µÄ·ÃÎÊ Tomcat£¬ÏÖÔÚ×îºÃÍ¬Ê±¿ªÆô×Ô¶¯Æô¶¯ Tomcat ·şÎñ£º
+>å¦‚æœä½ æˆåŠŸçš„è®¿é—® Tomcatï¼Œç°åœ¨æœ€å¥½åŒæ—¶å¼€å¯è‡ªåŠ¨å¯åŠ¨ Tomcat æœåŠ¡ï¼š
 ```
 sudo systemctl enable tomcat8080
 ```
 
-²½Öè 7£ºÅäÖÃ Tomcat Web ¹ÜÀí½Ó¿Ú
+æ­¥éª¤ 7ï¼šé…ç½® Tomcat Web ç®¡ç†æ¥å£
 --------------------------------
->ÔÚÊ¹ÓÃ Tomcat web ¹ÜÀíÓ¦ÓÃÇåµ¥Ê±£¬ÎÒÃÇ±ØĞëÌí¼ÓÒ»¸öÎÒÃÇµÄ Tomcat ·şÎñÕÊºÅ¡£ÎÒÃÇÒª±à¼­```tomcat-users.xml```ÎÄ¼ş£º
+>åœ¨ä½¿ç”¨ Tomcat web ç®¡ç†åº”ç”¨æ¸…å•æ—¶ï¼Œæˆ‘ä»¬å¿…é¡»æ·»åŠ ä¸€ä¸ªæˆ‘ä»¬çš„ Tomcat æœåŠ¡å¸å·ã€‚æˆ‘ä»¬è¦ç¼–è¾‘```tomcat-users.xml```æ–‡ä»¶ï¼š
 ```
 sudo nano /vagrant/environment/apache-tomcat-8080/conf/tomcat-users.xml
 ```
 
->ÄãÏëÓÃ»§Ë­ÄÜ·ÃÎÊ```manager-gui```ºÍ```admin-gui```¡£ËùÒÔÄãÄÜ¶¨ÒåÓÃ»§£¬ÀàËÆÈçÏÂÊ¾Àı£¬ÔÚ```tomcat-users```±êÇ©¼ä¡£È·±£ĞŞ¸ÄÅäÖÃµÄÓÃ»§ºÍÃÜÂëÊÇ°²È«µÄ£º
-**tomcat-users.xml ¡ª Admin User**
+>ä½ æƒ³ç”¨æˆ·è°èƒ½è®¿é—®```manager-gui```å’Œ```admin-gui```ã€‚æ‰€ä»¥ä½ èƒ½å®šä¹‰ç”¨æˆ·ï¼Œç±»ä¼¼å¦‚ä¸‹ç¤ºä¾‹ï¼Œåœ¨```tomcat-users```æ ‡ç­¾é—´ã€‚ç¡®ä¿ä¿®æ”¹é…ç½®çš„ç”¨æˆ·å’Œå¯†ç æ˜¯å®‰å…¨çš„ï¼š
+**tomcat-users.xml â€” Admin User**
 ```xml
 <tomcat-users>
     <user username="admin" password="password" roles="manager-gui,admin-gui"/>
 </tomcat-users>
 ```
->µ±ÄãÍê³Éºó±£´æ²¢¹Ø±ÕÎÄ¼ş¡£
+>å½“ä½ å®Œæˆåä¿å­˜å¹¶å…³é—­æ–‡ä»¶ã€‚
 
->Ä¬ÈÏÇé¿öÏÂ£¬½ÏĞÂ°æ±¾µÄ Tomcat Manager ºÍ Host ManagerÓ¦ÓÃµÄ·ÃÎÊÏŞÖÆÊÇÁ¬µ½Ëü×Ô¼ºµÄ·şÎñÉÏ¡£ÓÉÓÚÎÒÃÇÊÇ°²×°ÔÚÔ¶³Ì·şÎñ»úÆ÷£¬Äã¿ÉÄÜÏëÉ¾³ı»òĞŞ¸ÄÏŞÖÆ¡£´ò¿ªÏàÓ¦µÄ```context.xml```ÎÄ¼ş£¬¸ü¸Ä IP µØÖ·ÏŞÖÆ¡£
+>é»˜è®¤æƒ…å†µä¸‹ï¼Œè¾ƒæ–°ç‰ˆæœ¬çš„ Tomcat Manager å’Œ Host Manageråº”ç”¨çš„è®¿é—®é™åˆ¶æ˜¯è¿åˆ°å®ƒè‡ªå·±çš„æœåŠ¡ä¸Šã€‚ç”±äºæˆ‘ä»¬æ˜¯å®‰è£…åœ¨è¿œç¨‹æœåŠ¡æœºå™¨ï¼Œä½ å¯èƒ½æƒ³åˆ é™¤æˆ–ä¿®æ”¹é™åˆ¶ã€‚æ‰“å¼€ç›¸åº”çš„```context.xml```æ–‡ä»¶ï¼Œæ›´æ”¹ IP åœ°å€é™åˆ¶ã€‚
 
->Manager Ó¦ÓÃ£º
+>Manager åº”ç”¨ï¼š
 ```
 sudo nano /vagrant/environment/apache-tomcat-8080/webapps/manager/META-INF/context.xml
 ```
->Host Manager Ó¦ÓÃ£º
+>Host Manager åº”ç”¨ï¼š
 ```
 sudo nano /vagrant/environment/apache-tomcat-8080/webapps/host-manager/META-INF/context.xml
 ```
->ÎÄ¼şÄÚ£¬ÅäÖÃÔÊĞíÀ´×ÔÈÎºÎµØ·½µÄ IP µØÖ·Á¬½Ó¡£»òÅäÖÃÖ»ÔÊĞí×Ô¼ºµÄ IP µØÖ··ÃÎÊ£¬½«ÔÊĞí·ÃÎÊµÄ ¹«¹² IP µØÖ··ÅÈëÁĞ±íÖĞ£º
+>æ–‡ä»¶å†…ï¼Œé…ç½®å…è®¸æ¥è‡ªä»»ä½•åœ°æ–¹çš„ IP åœ°å€è¿æ¥ã€‚æˆ–é…ç½®åªå…è®¸è‡ªå·±çš„ IP åœ°å€è®¿é—®ï¼Œå°†å…è®¸è®¿é—®çš„ å…¬å…± IP åœ°å€æ”¾å…¥åˆ—è¡¨ä¸­ï¼š
 
 **context.xml files for Tomcat webapps**
 ```xml
@@ -213,30 +213,30 @@ sudo nano /vagrant/environment/apache-tomcat-8080/webapps/host-manager/META-INF/
   
 </Context>
 ```
->ÅäÖÃËµÃ÷£º
+>é…ç½®è¯´æ˜ï¼š
 ```text
-Ìá¹©Á½¸ö²ÎÊıÅäÖÃ£ºRemoteHostValve ºÍ RemoteAddrValve£¬Ç°ÕßÓÃÓÚÏŞÖÆÖ÷»úÃû£¬ºóÕßÓÃÓÚÏŞÖÆ IP µØÖ·£»
-allow£ºÔÊĞí·ÃÎÊ
-deny£º¾Ü¾ø·ÃÎÊ
+æä¾›ä¸¤ä¸ªå‚æ•°é…ç½®ï¼šRemoteHostValve å’Œ RemoteAddrValveï¼Œå‰è€…ç”¨äºé™åˆ¶ä¸»æœºåï¼Œåè€…ç”¨äºé™åˆ¶ IP åœ°å€ï¼›
+allowï¼šå…è®¸è®¿é—®
+denyï¼šæ‹’ç»è®¿é—®
 ```
 ```xml
 <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="192.168.0.47" deny=""/>
 ```
->µ±Íê³Éºó±£´æ²¢ÍË³ö¡£
+>å½“å®Œæˆåä¿å­˜å¹¶é€€å‡ºã€‚
 
->ÎªÊ¹ĞŞ¸ÄÉúĞ§£¬ÒªÖØÆô Tomcat ·şÎñ£º
+>ä¸ºä½¿ä¿®æ”¹ç”Ÿæ•ˆï¼Œè¦é‡å¯ Tomcat æœåŠ¡ï¼š
 ```
 sudo systemctl restart tomcat8080
 ```
 
-²½Öè 8£º·ÃÎÊ Web ½Ó¿Ú
+æ­¥éª¤ 8ï¼šè®¿é—® Web æ¥å£
 ---------------------
->Í¨¹ıÓòÃû»ò IP ·ÃÎÊ
+>é€šè¿‡åŸŸåæˆ– IP è®¿é—®
 ```
 http://server_domain_or_IP:8080
 ```
 
->Manager App ·ÃÎÊ
+>Manager App è®¿é—®
 ```
 http://server_domain_or_IP:8080/manager/html
 ```
@@ -246,8 +246,8 @@ http://server_domain_or_IP:8080/manager/html
 http://server_domain_or_IP:8080/host-manager/html/
 ```
 
-²Î¿¼×ÊÁÏ
+å‚è€ƒèµ„æ–™
 --------
 - [How To Install Apache Tomcat 8 on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04)
-- [Tomcat ÖĞÊµÏÖ IP ·ÃÎÊÏŞÖÆ](http://fanli7.net/a/bianchengyuyan/C__/20140225/473164.html)
+- [Tomcat ä¸­å®ç° IP è®¿é—®é™åˆ¶](http://fanli7.net/a/bianchengyuyan/C__/20140225/473164.html)
 - [How To Use Systemctl to Manage Systemd Services and Units](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)

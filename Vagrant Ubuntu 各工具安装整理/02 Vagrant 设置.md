@@ -1,53 +1,53 @@
-Vagrant ÉèÖÃ
+Vagrant è®¾ç½®
 ============
 
-Vagrant Ê¹ÓÃ
+Vagrant ä½¿ç”¨
 ------------
->°²×°Íê git ºó£¬ÓÒ»÷Êó±êÑ¡Ôñ¡°Git Bash Here¡± ´ò¿ª git¡£ Í¨¹ý git Ê¹ÓÃ vagrant£¬ vagrant ÊÇÒÔ CLI µÄÐÎÊ½²Ù×÷¡£
+>å®‰è£…å®Œ git åŽï¼Œå³å‡»é¼ æ ‡é€‰æ‹©â€œGit Bash Hereâ€ æ‰“å¼€ gitã€‚ é€šè¿‡ git ä½¿ç”¨ vagrantï¼Œ vagrant æ˜¯ä»¥ CLI çš„å½¢å¼æ“ä½œã€‚
 
-Vagrant ³£ÓÃÖ¸Áî
+Vagrant å¸¸ç”¨æŒ‡ä»¤
 ----------------
 >vagrant init
 ```text
-¶Ô vagrant ³õÊ¼»¯
+å¯¹ vagrant åˆå§‹åŒ–
 ```
 
 >vagrant status
 ```text
-²é¿´ vagrant ×´Ì¬
+æŸ¥çœ‹ vagrant çŠ¶æ€
 ```
 
 >vagrant global-status
 ```
-²é¿´ vagrant È«¾Ö×´Ì¬
+æŸ¥çœ‹ vagrant å…¨å±€çŠ¶æ€
 ```
 
 >vagrant box list
 ```text
-²é¿´µ±Ç°ËùÓÐ vagrant box ÁÐ±í
+æŸ¥çœ‹å½“å‰æ‰€æœ‰ vagrant box åˆ—è¡¨
 ```
 
 >vagrant box add box_name path/add.box
 ```text
-ÐÂÔö vagrant box Ãû³Æ Â·¾¶
+æ–°å¢ž vagrant box åç§° è·¯å¾„
 ```
 
 >vagrant up
 ```text
-´ò¿ª vagrant ÐéÄâ»ú
+æ‰“å¼€ vagrant è™šæ‹Ÿæœº
 ```
 
 >vagrant ssh
 ```text
-µÇÂ¼ vagrant ÐéÄâ»ú
+ç™»å½• vagrant è™šæ‹Ÿæœº
 ```
 
 >vagrant halt
 ```text
-ÏÈ¹Ø±ÕÐéÄâ»ú
+å…ˆå…³é—­è™šæ‹Ÿæœº
 ```
 
->vagrant Æô¶¯ºóµÄÄ¬ÈÏ¶Ë¿ÚÓ³Éä£º
+>vagrant å¯åŠ¨åŽçš„é»˜è®¤ç«¯å£æ˜ å°„ï¼š
 ```text
 default: 80 (guest) => 7080 (host) (adapter 1)
 default: 22 (guest) => 2222 (host) (adapter 1)

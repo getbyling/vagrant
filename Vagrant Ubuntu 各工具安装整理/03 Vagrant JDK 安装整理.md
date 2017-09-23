@@ -1,30 +1,30 @@
-Vagrant Ubuntu JDK °²×°ÕûÀí
+Vagrant Ubuntu JDK å®‰è£…æ•´ç†
 ===========================
-### JDK ×¼±¸
->ÕâÀïÌá¹©µÄÊÇ JDK 8 ÏÂÔØµØÖ·£¬ĞèÒª×¢ÒâµÄÊÇ JDK µÄÎ»Êı°æ±¾ÒªÓë Vagrant ĞéÄâ»úÉÏµÄÏµÍ³Î»Êı°æ±¾±£³ÖÒ»ÖÂ£¬·ñÔò×°ÉÏ²»ÄÜÊ¹ÓÃ¡£[JDK ÏÂÔØ](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+### JDK å‡†å¤‡
+>è¿™é‡Œæä¾›çš„æ˜¯ JDK 8 ä¸‹è½½åœ°å€ï¼Œéœ€è¦æ³¨æ„çš„æ˜¯ JDK çš„ä½æ•°ç‰ˆæœ¬è¦ä¸ Vagrant è™šæ‹Ÿæœºä¸Šçš„ç³»ç»Ÿä½æ•°ç‰ˆæœ¬ä¿æŒä¸€è‡´ï¼Œå¦åˆ™è£…ä¸Šä¸èƒ½ä½¿ç”¨ã€‚[JDK ä¸‹è½½](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 
-### ÉèÖÃ»·¾³±äÁ¿
+### è®¾ç½®ç¯å¢ƒå˜é‡
 ```
  cd ~
 ```
 ```
  sudo vi .bashrc
 ```
-**ÎÄ¼şÄ©Î²×·¼ÓÒÔÏÂÄÚÈİ£º**
+**æ–‡ä»¶æœ«å°¾è¿½åŠ ä»¥ä¸‹å†…å®¹ï¼š**
 ```
 #set oracle jdk environment
-#ÕâÀïÒª×¢ÒâÄ¿Â¼Òª»»³É×Ô¼º½âÑ¹µÄjdk Ä¿Â¼£¬Èç£ºenvironment/jdk1.8.0_144
+#è¿™é‡Œè¦æ³¨æ„ç›®å½•è¦æ¢æˆè‡ªå·±è§£å‹çš„jdk ç›®å½•ï¼Œå¦‚ï¼šenvironment/jdk1.8.0_144
 export JAVA_HOME=/vagrant/environment/jdk1.8.0_144
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 ```
-**Ê¹»·¾³±äÁ¿ÂíÉÏÉúĞ§**
+**ä½¿ç¯å¢ƒå˜é‡é©¬ä¸Šç”Ÿæ•ˆ**
 ```
  source .bashrc
 ```
-### ÉèÖÃÏµÍ³Ä¬ÈÏ JDK °æ±¾
+### è®¾ç½®ç³»ç»Ÿé»˜è®¤ JDK ç‰ˆæœ¬
 ```
  sudo update-alternatives --install "/usr/bin/java" "java" "/vagrant/environment/jdk1.8.0_144/bin/java" 1 
  sudo update-alternatives --install "/usr/bin/javac" "javac" "/vagrant/environment/jdk1.8.0_144/bin/javac" 1 
@@ -32,13 +32,13 @@ export PATH=${JAVA_HOME}/bin:$PATH
  sudo update-alternatives --install "/usr/bin/javah" "javah" "/vagrant/environment/jdk1.8.0_144/bin/javah" 1 
  sudo update-alternatives --install "/usr/bin/javap" "javap" "/vagrant/environment/jdk1.8.0_144/bin/javap" 1 
 ```
-**Ö´ĞĞÉèÖÃ£º**
+**æ‰§è¡Œè®¾ç½®ï¼š**
 ```
  sudo update-alternatives --config java
 ```
-### ²âÊÔ JDK
+### æµ‹è¯• JDK
 ```
  java -version
 ```
 
-**OK£¬°²×°³É¹¦**
+**OKï¼Œå®‰è£…æˆåŠŸ**
