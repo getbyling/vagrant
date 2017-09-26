@@ -11,7 +11,7 @@ Vagrant Ubuntu JDK 安装整理
 ```
  sudo vi .bashrc
 ```
-**文件末尾追加以下内容：**
+#####文件末尾追加以下内容：
 ```
 #set oracle jdk environment
 #这里要注意目录要换成自己解压的jdk 目录，如：environment/jdk1.8.0_144
@@ -20,7 +20,7 @@ export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 ```
-**使环境变量马上生效**
+#####使环境变量马上生效
 ```
  source .bashrc
 ```
@@ -32,7 +32,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
  sudo update-alternatives --install "/usr/bin/javah" "javah" "/vagrant/environment/jdk1.8.0_144/bin/javah" 1 
  sudo update-alternatives --install "/usr/bin/javap" "javap" "/vagrant/environment/jdk1.8.0_144/bin/javap" 1 
 ```
-**执行设置：**
+#####执行设置：
 ```
  sudo update-alternatives --config java
 ```
@@ -41,4 +41,4 @@ export PATH=${JAVA_HOME}/bin:$PATH
  java -version
 ```
 
-**OK，安装成功**
+#####OK，安装成功
