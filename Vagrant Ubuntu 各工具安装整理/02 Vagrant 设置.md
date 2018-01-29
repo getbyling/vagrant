@@ -7,44 +7,44 @@ Vagrant 使用
 
 Vagrant 常用指令
 ----------------
->vagrant init
+>对 vagrant 初始化
 ```text
-对 vagrant 初始化
+vagrant init
 ```
 
->vagrant status
+>查看 vagrant 状态
 ```text
-查看 vagrant 状态
+vagrant status
 ```
 
->vagrant global-status
+>查看 vagrant 全局状态
 ```
-查看 vagrant 全局状态
-```
-
->vagrant box list
-```text
-查看当前所有 vagrant box 列表
+vagrant global-status
 ```
 
->vagrant box add box_name path/add.box
+>查看当前所有 vagrant box 列表
 ```text
-新增 vagrant box 名称 路径
+vagrant box list
 ```
 
->vagrant up
+>新增 vagrant box 名称 路径
 ```text
-打开 vagrant 虚拟机
+vagrant box add box_name path/add.box
 ```
 
->vagrant ssh
+>打开 vagrant 虚拟机
 ```text
-登录 vagrant 虚拟机
+vagrant up
 ```
 
->vagrant halt
+>登录 vagrant 虚拟机
 ```text
-先关闭虚拟机
+vagrant ssh
+```
+
+>先关闭虚拟机
+```text
+vagrant halt
 ```
 
 >vagrant 启动后的默认端口映射：
